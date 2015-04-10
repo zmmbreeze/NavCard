@@ -63,7 +63,6 @@ gulp.task('browserify', function(callback) {
             cache: {},
             packageCache: {},
             fullPaths: true,
-            paths: config.paths,
             // Specify the entry point of your app
             entries: bundleConfig.entries,
             // Add file extentions to make optional in your requires

@@ -30,9 +30,8 @@ module.exports = {
         dest: dest + '/imgs'
     },
     browserify: {
-        src: src + '/js/',
-        dest: dest + '/js',
-        paths: [src + '/deps/', src + '/node_modules/'],
+        src: src,
+        dest: dest,
         // Enable source maps
         debug: true
     }
