@@ -32,6 +32,8 @@ module.exports = {
     browserify: {
         src: src + '/js/',
         dest: dest + '/js',
+        external: src + '/deps/react/react.js',
+        paths: [src + '/deps/', src + '/node_modules/'],
         // Enable source maps
         debug: true
     }

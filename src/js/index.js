@@ -1,5 +1,4 @@
 /* @jsx React.DOM */
-var React = require('../deps/react/react');
 var NavCard = require('./NavCard');
 
 React.render(
