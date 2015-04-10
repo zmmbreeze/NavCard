@@ -1,0 +1,27 @@
+{
+  "name": "react-card",
+  "version": "0.1.0",
+  "authors": [
+    "zmmbreeze <zmmbreeze0825@gmail.com>"
+  ],
+  "description": "Mobile card navigation in react.",
+  "main": "src/js/NavCard.js",
+  "keywords": [
+    "react",
+    "card",
+    "navigation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/deps/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.1",
+    "object-assign": "~2.0.0"
+  }
+}
