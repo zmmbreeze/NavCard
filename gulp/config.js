@@ -1,5 +1,5 @@
 var util = require('gulp-util');
-var dest = util.env.target || './build';
+var dest = util.env.target || './test';
 var src = './src';
 
 module.exports = {
@@ -32,7 +32,6 @@ module.exports = {
     browserify: {
         src: src + '/js/',
         dest: dest + '/js',
-        external: src + '/deps/react/react.js',
         paths: [src + '/deps/', src + '/node_modules/'],
         // Enable source maps
         debug: true

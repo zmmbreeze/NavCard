@@ -19,8 +19,28 @@ var source       = require('vinyl-source-stream');
 var config       = require('../config').browserify;
 var reactify     = require('reactify');
 
+function readPackageJSON() {
+    var pkg = JSON.parse(require('fs').readFileSync('./package.json'));
+    var deps = [];
+    if (pkg.dependencies) {
+        Object.keys(pkg.dependencies).forEach(function(i) {
+            deps.push(i);
+        });
+    }
+    if (pkg.peerDependencies) {
+        Object.keys(pkg.peerDependencies).forEach(function(i) {
+            deps.push(i);
+        });
+    }
+    return {
+        name: pkg.name,
+        deps: deps
+    };
+}
+
 gulp.task('browserify', function(callback) {
 
+    var pkg = readPackageJSON();
     var bundleConfigs = [];
     fs.readdirSync(config.src).forEach(function (filename) {
         if (path.extname(filename) !== '.js') {
@@ -38,7 +58,7 @@ gulp.task('browserify', function(callback) {
 
     var bundleQueue = bundleConfigs.length;
     var browserifyThis = function(bundleConfig) {
-        var bundler = browserify({
+        var option ={
             // Required watchify args
             cache: {},
             packageCache: {},
@@ -50,9 +70,17 @@ gulp.task('browserify', function(callback) {
             extensions: config.extensions,
             // Enable source maps!
             debug: config.debug
-        });
+        };
+        if (!global.isWatching) {
+            option.standalone = pkg.name;
+        }
+        var bundler = browserify(option);
         bundler.transform(reactify);
-        bundler.external(config.external);
+        if (!global.isWatching) {
+            pkg.deps.forEach(function (pkgName) {
+                bundler.exclude(pkgName);
+            });
+        }
 
         var bundle = function() {
             // Log when bundling starts

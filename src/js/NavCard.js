@@ -1,4 +1,5 @@
 /* @jsx React.DOM */
+var React = require('react');
 var NavCardStyle = require('./lib/NavCardStyle');
 var NavCardItem = require('./lib/NavCardItem');
 var NavCard = React.createClass({

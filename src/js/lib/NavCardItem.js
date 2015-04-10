@@ -1,4 +1,5 @@
 /* @jsx React.DOM */
+var React = require('react');
 var NavCardStyle = require('./NavCardStyle');
 var NavCardItem = React.createClass({
     getDefaultProps: function() {
