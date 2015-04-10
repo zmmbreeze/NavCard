@@ -26,7 +26,7 @@
     "watchify": "~1.0.2",
     "reactify": "~1.1.0"
   },
-  "dependencies": {
+  "peerDependencies": {
     "react": "^0.13.1"
   }
 }
