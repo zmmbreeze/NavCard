@@ -1,6 +1,7 @@
 /* @jsx React.DOM */
 var React = require('react');
 var NavCardStyle = require('./NavCardStyle');
+var util = require('./util');
 var NavCardItem = React.createClass({
     getDefaultProps: function() {
         return {
@@ -10,23 +11,20 @@ var NavCardItem = React.createClass({
     getInitialStates: function () {
     },
     render: function () {
-        return (<div
-            style={[NavCardStyle.base, NavCardStyle.hide]}
-            onScroll={this._handleScroll.bind(this)}
-            onTouchMove={this._handleTouchMove.bind(this)}
-            onTouchEnd={this._handleTouchEnd.bind(this)}
-        >
-        {this.props.children}
-        </div>);
-    },
-    _handleScroll: function () {
+        var styles = NavCardStyle.base;
+        if (!this.props.show) {
+            styles = util.mergeStyle(styles, NavCardStyle.hide);
+        }
 
+        return (<div ref="root" style={styles}>{this.props.children}</div>);
     },
-    _handleTouchMove: function () {
-
+    setX: function (x) {
+        var root = React.findDOMNode(this.refs.root);
+        root.style.transform = 'translate3d(' + x + 'px, 0, 0)';
     },
-    _handleTouchEnd: function () {
-
+    setY: function (y) {
+        var root = React.findDOMNode(this.refs.root);
+        root.style.transform = 'translate3d(0, ' + x + 'px, 0)';
     }
 });
 
